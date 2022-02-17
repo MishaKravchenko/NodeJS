@@ -10,6 +10,7 @@
 // console.log(name)
 
 //*3--------------------------------------
+// P A T H
 const path = require("path");
 
 // const joinedPath = path.join(__dirname, "test2", "files", "public", "text.txt");
@@ -24,6 +25,7 @@ const path = require("path");
 // console.log(resolvedPath, "RESOLVE");
 
 //*6--------------------------------------
+// O S
 const os = require("os");
 
 // console.log(os.cpus())
@@ -31,6 +33,7 @@ const os = require("os");
 // console.log(os.arch())
 
 //*7--------------------------------------
+// FS
 const fs = require("fs");
 
 // fs.writeFileSync(path.join(__dirname, "files", "files.txt"), "SOME DATA");
@@ -102,16 +105,85 @@ const fs = require("fs");
 //     console.log(err)
 // }))
 
-fs.rename(path.join(__dirname, "files", "kukuyopta"),
-    path.join(__dirname, "public", "test1", "test2", "kukuyopta"), ((err) => {
-    console.log(err)
-}))
+// fs.rename(path.join(__dirname, "files", "kukuyopta"),
+//     path.join(__dirname, "public", "test1", "test2", "kukuyopta"), ((err) => {
+//     console.log(err)
+// }))
 
+//*16--------------------------------------
+// E V E N T S
+const {EventEmitter} = require('events');
+const ee = new EventEmitter();
 
+// ee.on('Log', (name) => {
+//     console.log(`Log is working!!!! ${name}`)
+// })
 
+// ee.emit('Log', 'Oleg');
+// ee.emit('Log', 'Oleg');
+// ee.emit('Log', 'Oleg');
+// ee.emit('Log', 'Oleg');
+// ee.emit('Log', 'Oleg');
+// ee.emit('Log', 'Oleg');
+// ee.emit('Log', 'Oleg');
 
+//*18--------------------------------------
+// ee.once('Test', () => {
+//     console.log(`Once is working!!!`)
+// })
 
+// ee.emit('Test', 'Oleg');
+// ee.emit('Test', 'Oleg');
+// ee.emit('Test', 'Oleg');
+// ee.emit('Test', 'Oleg');
+// ee.emit('Test', 'Oleg');
 
+//*19--------------------------------------
+// console.log(ee.eventNames());
 
+//*19--------------------------------------
+// S T R E A M S
+const readStream = fs.createReadStream(path.join(__dirname, 'test.txt'));
 
+// readStream.on('data', (chunk) => {
+//     console.log(chunk.toString())
+// })
 
+//*20--------------------------------------
+const writeStream = fs.createWriteStream(path.join(__dirname, 'fileTest.txt'));
+
+// writeStream.write("SOME DATA1", (err) => {
+//     if (err) {
+//         console.log(err);
+//         throw err;
+//     }
+//     writeStream.end()
+// })
+
+//*21--------------------------------------
+// for (let i = 0; i < 5000; i++) {
+//     writeStream.write('NEW\n', (err) => {
+//         if (err) {
+//             console.log(err);
+//             throw err;
+//         }
+//     })
+//
+// }
+// writeStream.end()
+
+//*21--------------------------------------
+// readStream.on('data', (chunk) => {
+//     // console.log(chunk.toString())
+//     writeStream.write(chunk, (err) => {
+//         if (err) {
+//             console.log(err);
+//             throw err;
+//         }
+//     })
+//     writeStream.end()
+// });
+
+//*21--------------------------------------
+// P I P E
+readStream.pipe(writeStream);

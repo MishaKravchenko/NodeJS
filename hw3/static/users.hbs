@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body style="display: flex; justify-content: center">
+
+<div style="background-color: deeppink; text-align: center; border:2px black solid; width: 500px">
+    <h1>Users</h1>
+    {{#each users}}
+        <p><b>id:{{this.id}}</b></p>
+        <p>firstName: {{this.firstName}}</p>
+        <p>lastName: {{this.lastName}}</p>
+        <p>email: {{this.email}}</p>
+        <p>password: {{this.password}}</p>
+        <p>age: {{this.age}}</p>
+        <p>city: {{this.city}}</p>
+        <form action='/users/{{this.id}}' method="get">
+            <input type="submit" value="User Info">
+        </form>
+        <hr>
+    {{/each}}
+
+</div>
+
+</body>
+</html>

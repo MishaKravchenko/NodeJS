@@ -1,5 +1,5 @@
 import {
-    Column, DeleteDateColumn, CreateDateColumn, PrimaryGeneratedColumn,
+    Column, CreateDateColumn, DeleteDateColumn, PrimaryGeneratedColumn,
 } from 'typeorm';
 
 export interface ICommonFields {

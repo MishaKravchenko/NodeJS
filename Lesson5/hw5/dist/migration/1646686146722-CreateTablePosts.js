@@ -38,7 +38,7 @@ class CreateTablePosts1646686146722 {
                     default: 'now()',
                 },
                 {
-                    name: 'deleteAt',
+                    name: 'deletedAt',
                     type: 'timestamp',
                     isNullable: true,
                 },

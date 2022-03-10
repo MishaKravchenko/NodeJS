@@ -18,9 +18,9 @@ app.get('/users', async (req, res) => {
     // .find({ relations: ['posts'] });
     // res.json(users);
     // -2 example
-    // const users = await getManager().getRepository(User)
-    // .findOne();
-    // res.json(users);
+    const users = await (0, typeorm_1.getManager)().getRepository(user_1.User)
+        .find();
+    res.json(users);
     // -3 example
     // const users = await getManager().getRepository(User)
     // .findOne({
@@ -36,12 +36,12 @@ app.get('/users', async (req, res) => {
     //     .getOne();
     // res.json(users);
     // -5 example
-    const users = await (0, typeorm_1.getManager)().getRepository(user_1.User)
-        .createQueryBuilder('user')
-        .leftJoin('Posts', 'posts', 'posts.userId = user.id')
-        .where('posts.text = "Karova"')
-        .getMany();
-    res.json(users);
+    // const users = await getManager().getRepository(User)
+    //     .createQueryBuilder('user')
+    //     .leftJoin('Posts', 'posts', 'posts.userId = user.id')
+    //     .where('posts.text = "Karova"')
+    //     .getMany();
+    // res.json(users);
 });
 app.get('/users/:id', async (req, res) => {
     const { id } = req.params;
@@ -90,6 +90,12 @@ app.patch('/posts/:userId', async (req, res) => {
         .update({ userId: Number(userId) }, { text: req.body.text });
     res.json(users);
 });
+app.get('/comments', async (req, res) => {
+    const comments = await (0, typeorm_1.getManager)()
+        .getRepository(comment_1.Comment)
+        .find();
+    res.json(comments);
+});
 app.get('/comments/:userId', async (req, res) => {
     const { userId } = req.params;
     const commentsOfUser = await (0, typeorm_1.getManager)()
@@ -127,12 +133,6 @@ app.patch('/comments/action', async (req, res) => {
     catch (e) {
         console.log(e);
     }
-});
-app.get('/comments', async (req, res) => {
-    const commentsOfUser = await (0, typeorm_1.getManager)()
-        .getRepository(comment_1.Comment)
-        .find();
-    res.json(commentsOfUser);
 });
 app.listen(5500, async () => {
     console.log('Server has started!!!!');

@@ -13,7 +13,7 @@ export interface IComment {
     dislike: number;
 }
 
-@Entity('Comment', { database: 'okten' })
+@Entity('Comments', { database: 'okten' })
 export class Comment extends CommonFields implements IComment {
     @Column({
         type: 'varchar',

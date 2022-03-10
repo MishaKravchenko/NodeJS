@@ -16,9 +16,9 @@ app.get('/users', async (req: Request, res: Response) => {
     // res.json(users);
 
     // -2 example
-    // const users = await getManager().getRepository(User)
-    // .findOne();
-    // res.json(users);
+    const users = await getManager().getRepository(User)
+        .find();
+    res.json(users);
 
     // -3 example
     // const users = await getManager().getRepository(User)
@@ -37,12 +37,12 @@ app.get('/users', async (req: Request, res: Response) => {
     // res.json(users);
 
     // -5 example
-    const users = await getManager().getRepository(User)
-        .createQueryBuilder('user')
-        .leftJoin('Posts', 'posts', 'posts.userId = user.id')
-        .where('posts.text = "Karova"')
-        .getMany();
-    res.json(users);
+    // const users = await getManager().getRepository(User)
+    //     .createQueryBuilder('user')
+    //     .leftJoin('Posts', 'posts', 'posts.userId = user.id')
+    //     .where('posts.text = "Karova"')
+    //     .getMany();
+    // res.json(users);
 });
 
 app.get('/users/:id', async (req: Request, res: Response) => {
@@ -99,6 +99,13 @@ app.patch('/posts/:userId', async (req: Request, res: Response) => {
     res.json(users);
 });
 
+app.get('/comments', async (req: Request, res: Response) => {
+    const comments = await getManager()
+        .getRepository(Comment)
+        .find();
+    res.json(comments);
+});
+
 app.get('/comments/:userId', async (req: Request, res: Response) => {
     const { userId } = req.params;
     const commentsOfUser = await getManager()
@@ -144,13 +151,6 @@ app.patch('/comments/action', async (req: Request, res: Response) => {
     } catch (e) {
         console.log(e);
     }
-});
-
-app.get('/comments', async (req: Request, res: Response) => {
-    const commentsOfUser = await getManager()
-        .getRepository(Comment)
-        .find();
-    res.json(commentsOfUser);
 });
 
 app.listen(5500, async () => {

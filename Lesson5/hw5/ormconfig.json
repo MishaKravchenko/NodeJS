@@ -6,6 +6,7 @@
   "password": "k251119981330",
   "database": "okten",
   "synchronize": false,
+  "migrationsRun": false,
   "logging": false,
   "entities": [
     "src/entity/**/*.ts"

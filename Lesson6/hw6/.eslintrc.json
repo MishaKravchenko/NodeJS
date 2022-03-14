@@ -24,7 +24,10 @@
                 "ts": "never"
             }
         ],
-        "class-methods-use-this": "off"
+        "no-unused-vars": ["error", { "args": "none" }],
+        "class-methods-use-this": "off",
+        "no-underscore-dangle": "off",
+        "no-return-await": "off"
     },
     "settings": {
         "import/resolver" : {

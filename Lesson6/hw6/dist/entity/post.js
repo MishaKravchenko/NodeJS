@@ -14,6 +14,7 @@ const typeorm_1 = require("typeorm");
 const commonFields_1 = require("./commonFields");
 const user_1 = require("./user");
 const comment_1 = require("./comment");
+const config_1 = require("../config/config");
 let Post = class Post extends commonFields_1.CommonFields {
 };
 __decorate([
@@ -48,7 +49,7 @@ __decorate([
     __metadata("design:type", Array)
 ], Post.prototype, "comment", void 0);
 Post = __decorate([
-    (0, typeorm_1.Entity)('Posts', { database: 'okten' })
+    (0, typeorm_1.Entity)('Posts', { database: config_1.config.MYSQL_DATABASE_NAME })
 ], Post);
 exports.Post = Post;
 //# sourceMappingURL=post.js.map

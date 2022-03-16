@@ -1,9 +1,19 @@
 import { Request, Response } from 'express';
-import {authService} from "../services/authService";
+
+import { authService } from '../services/authService';
+import { COOKIE } from '../constants/cookie';
+import { ITokenData } from '../interfaces/tokenInterface';
 
 class AuthController {
-    public async registration(req: Request, res: Response) {
-        const data = authService.registration(req.body);
+    public async registration(req: Request, res: Response): Promise<Response<ITokenData>> {
+        const data = await authService.registration(req.body);
+        res.cookie(
+            COOKIE.nameRefreshToken,
+            data.refreshToken,
+            { maxAge: COOKIE.maxAgeRefreshToken, httpOnly: true },
+        );
+
+        return res.json(data);
     }
 }
 

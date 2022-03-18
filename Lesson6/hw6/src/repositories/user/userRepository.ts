@@ -1,9 +1,9 @@
 import { EntityRepository, getManager, Repository } from 'typeorm';
 import { IUser, User } from '../../entity/user';
-import { IUserRepositoryInterface } from './userRepository.interface';
+import { IUserRepository } from './userRepository.interface';
 
 @EntityRepository(User)
-class UserRepository extends Repository<User> implements IUserRepositoryInterface {
+class UserRepository extends Repository<User> implements IUserRepository {
     public async getAllUsers(): Promise<any> {
         return getManager().getRepository(User).find();
     }
